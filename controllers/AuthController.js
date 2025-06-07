@@ -9,12 +9,13 @@ const AuthController = {
     try {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        res.status(400).json({
+        return res.status(400).json({
           success: false,
-          message: "validation failed",
+          message: "validation failed for registration",
         });
       }
 
+      console.log("request body", req.body)
       const { username, email, password } = req.body;
 
       const existingUser = await Users.findOne({
@@ -37,7 +38,6 @@ const AuthController = {
         messsage: "User registered successfully",
         data: {
           user: user.toJSON(),
-          token,
         },
       });
     } catch (error) {
@@ -93,6 +93,9 @@ const AuthController = {
       });
     }
   },
+  refreshToken: (req, res)=> {
+
+  }
 };
 
 export default AuthController;
