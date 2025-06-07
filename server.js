@@ -5,6 +5,7 @@ import cors from "cors";
 import AuthRouter from "./routes/auth.routes.js";
 import UserRouter from "./routes/User.routes.js";
 import ReservationRouter from "./routes/reservation.routes.js";
+import RoomsRouter from "./routes/rooms.routes.js";
 import morgan from "morgan";
 
 dotenv.config();
@@ -20,6 +21,7 @@ app.use(express.json());
 app.use("/api/v1/auth", AuthRouter);
 app.use("/api/v1/user", UserRouter);
 app.use("/api/v1/reserve", ReservationRouter);
+app.use('/api/v1/rooms', RoomsRouter);
 const port = process.env.PORT || 5050;
 
 app.get("/", (req, res) => {

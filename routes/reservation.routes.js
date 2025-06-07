@@ -6,7 +6,7 @@ import CancelReasonValidation from '../utils/CancelReasonValidation.js';
 
 const ReservationRouter = express.Router();
 
-ReservationRouter.post('/reservation', AuthMiddleWare.auth, ReservationValidation, ReservationController.reservation);
+ReservationRouter.post('/reservation', AuthMiddleWare.auth, ReservationController.reservation);
 ReservationRouter.get('/fetchReservedUsers', AuthMiddleWare.auth, ReservationController.currentReservedUsers);
 ReservationRouter.put('/:id/cancelReservation', AuthMiddleWare.auth, CancelReasonValidation, ReservationController.cancelReservation);
 ReservationRouter.get('/reservation/:id', AuthMiddleWare.auth, ReservationController.reservationDetailsById)

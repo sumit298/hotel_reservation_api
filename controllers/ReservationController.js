@@ -35,7 +35,7 @@ const ReservationController = {
       if (!errors.isEmpty()) {
         res.status(400).json({
           success: false,
-          message: "validation failed",
+          message: "validation failed for reservation",
         });
       }
 
@@ -46,8 +46,9 @@ const ReservationController = {
       const checkOut = new Date(checkOutDate);
 
       const today = new Date();
+      today.setHours(0,0,0,0)
 
-      if (checkIn <= today) {
+      if (checkIn < today) {
         res.status(400).json({
           success: false,
           message: "CheckIn date cannot be in past",
@@ -101,13 +102,13 @@ const ReservationController = {
 
       await reservation.save();
 
-      res.status(201).json({
+      return res.status(201).json({
         success: true,
         message: "Reservation done successfully",
       });
     } catch (error) {
       console.log("Error in doing reservation", error);
-      res.status(500).json({
+      return res.status(500).json({
         success: false,
         message: "Server error during reservation",
       });
